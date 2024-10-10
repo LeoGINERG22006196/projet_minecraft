@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    public float moveSpeed = 5.0f;    // Vitesse de déplacement du personnage
+    public float moveSpeed = 10.0f;    // Vitesse de déplacement du personnage
     public float rotationSpeed = 10.0f; // Vitesse de rotation du personnage
     public Transform cameraTransform; // Référence à la caméra
 
