@@ -9,6 +9,6 @@ public class RotateGold : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
+        transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
     }
 }

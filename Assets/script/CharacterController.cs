@@ -25,7 +25,6 @@ public class CharacterController : MonoBehaviour
 
         // Récupérer l'Animator attaché au personnage
         animator = GetComponent<Animator>();
-        Debug.Log("Début");
     }
 
     void Update()
@@ -46,7 +45,7 @@ public class CharacterController : MonoBehaviour
         // Calculer la vitesse pour l'Animator
         float speed = movementDirection.magnitude;
         animator.SetFloat("Speed", speed); // Envoie la vitesse à l'Animator
-        Debug.Log("Speed: " + speed);
+        UnityEngine.Debug.Log("Speed : " + speed);
 
         // Si le joueur se déplace, on ajuste la direction
         if (speed >= 0.1f)
