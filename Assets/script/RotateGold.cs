@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class RotateGold : MonoBehaviour
 {
-    // Vitesse de rotation en degrés par seconde
-    public float rotationSpeed = 100f;
+    // Vitesses de rotation pour chaque axe en degrés par seconde
+    public float rotationSpeedX = 0f;
+    public float rotationSpeedY = 0f;
+    public float rotationSpeedZ = 100f;
 
     void Update()
     {
-        transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+        // Appliquer la rotation sur les axes X, Y et Z
+        transform.Rotate(rotationSpeedX * Time.deltaTime, rotationSpeedY * Time.deltaTime, rotationSpeedZ * Time.deltaTime);
     }
 }
