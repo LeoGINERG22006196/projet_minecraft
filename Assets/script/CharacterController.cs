@@ -33,7 +33,7 @@ public class CharacterController : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundLayer);
 
         // Envoyer l'état "isGrounded" à l'Animator
-        animator.SetBool("isGrounded", isGrounded);
+        animator.SetBool("IsGrounded", isGrounded);
 
         // Récupérer les inputs de déplacement du joueur
         float horizontal = Input.GetAxis("Horizontal"); // A/D ou Q/D
@@ -44,7 +44,7 @@ public class CharacterController : MonoBehaviour
 
         // Calculer la vitesse pour l'Animator
         float speed = movementDirection.magnitude;
-        animator.SetFloat("Speed", speed); // Envoie la vitesse à l'Animator
+        animator.SetFloat("Speed", speed * moveSpeed); // Envoie la vitesse à l'Animator
         UnityEngine.Debug.Log("Speed : " + speed);
 
         // Si le joueur se déplace, on ajuste la direction
