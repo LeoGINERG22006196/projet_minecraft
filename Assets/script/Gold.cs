@@ -5,6 +5,10 @@ public class Coin : MonoBehaviour
     public int coinValue = 10;
     private AudioSource audioSource;
 
+
+    public Transform chestUp; // Référence à l'élément "chest_Up"
+    public float animationDuration = 1.0f; // Durée de l'animation
+
     private void Start()
     {
         // Ajoute ou récupère l'AudioSource
