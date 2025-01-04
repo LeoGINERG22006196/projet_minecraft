@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class CharacterController : MonoBehaviour
@@ -11,6 +10,9 @@ public class CharacterController : MonoBehaviour
     public LayerMask groundLayer;         // Layer pour détecter le sol
     public Transform groundCheck;         // Position pour vérifier si le personnage est au sol
     public float groundDistance = 0.2f;   // Distance pour vérifier si le personnage touche le sol
+
+    public float jumpCooldown = 1.0f;     // Temps d'attente entre les sauts (en secondes)
+    private float lastJumpTime = -Mathf.Infinity; // Temps du dernier saut
 
     private Rigidbody rb;
     private bool isGrounded;
@@ -60,10 +62,11 @@ public class CharacterController : MonoBehaviour
             rb.MovePosition(transform.position + moveDir.normalized * moveSpeed * Time.deltaTime);
         }
 
-        // Gérer le saut
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        // Gérer le saut avec un cooldown
+        if (Input.GetButtonDown("Jump") && isGrounded && Time.time >= lastJumpTime + jumpCooldown)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            lastJumpTime = Time.time; // Enregistrer le moment du saut
         }
     }
 }

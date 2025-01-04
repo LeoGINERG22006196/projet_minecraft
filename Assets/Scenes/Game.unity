@@ -672,6 +672,7 @@ MonoBehaviour:
     m_Bits: 8
   groundCheck: {fileID: 1499898573}
   groundDistance: 0.2
+  jumpCooldown: 1
 --- !u!95 &126614397
 Animator:
   serializedVersion: 5
