@@ -65,7 +65,6 @@ public class CharacterController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            animator.SetTrigger("Jump"); // Déclenche l'animation de saut
         }
     }
 }
