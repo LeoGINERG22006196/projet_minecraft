@@ -45,7 +45,6 @@ public class CharacterController : MonoBehaviour
         // Calculer la vitesse pour l'Animator
         float speed = movementDirection.magnitude;
         animator.SetFloat("Speed", speed * moveSpeed); // Envoie la vitesse à l'Animator
-        UnityEngine.Debug.Log("Speed : " + speed);
 
         // Si le joueur se déplace, on ajuste la direction
         if (speed >= 0.1f)
