@@ -4,7 +4,18 @@ public class ChestInteraction : MonoBehaviour
 {
     private bool isOpened = false;
     public int coinValue = 100;
+    private AudioSource audioSource;
 
+    private void Start()
+    {
+        // Ajoute ou récupère l'AudioSource
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !isOpened)
@@ -19,7 +30,13 @@ public class ChestInteraction : MonoBehaviour
                 {
                     scoreManager.AddScore(coinValue);
                 }
-                Destroy(gameObject);
+
+                // Joue le son défini dans l'AudioSource
+                if (audioSource != null)
+                {
+                    audioSource.Play(); // Joue le son défini dans l'AudioSource
+                }
+                Destroy(gameObject, 0.1f);
             }
             else
             {
