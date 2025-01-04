@@ -3,7 +3,6 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public int coinValue = 10;
-    public AudioClip coinSound; // Clip audio à jouer
     private AudioSource audioSource;
 
     private void Start()
