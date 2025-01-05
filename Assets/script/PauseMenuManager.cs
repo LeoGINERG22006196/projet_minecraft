@@ -5,12 +5,13 @@ public class PauseMenuManager : MonoBehaviour
 {
     public GameObject pauseMenuUI; // Le menu de pause
     public GameObject successUI;   // Le menu de succès
+    public GameObject loseUI;   // Le menu de mort
     private bool isPaused = false;
 
     void Update()
     {
         // Vérifie si le menu de succès n'est pas actif avant de permettre l'ouverture/fermeture du menu de pause
-        if (!successUI.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        if (!successUI.activeSelf && !loseUI.activeSelf && Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
                 ResumeGame();
