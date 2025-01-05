@@ -41,6 +41,16 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    public HealthManager healthManager; // Référence au script HealthManager
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bat")) // Assurez-vous que les chauves-souris ont le tag "Bat"
+        {
+            healthManager.TakeDamage(); // Réduit la vie
+        }
+    }
+
     void Update()
     {
         // Vérifier si le personnage est au sol
