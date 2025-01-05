@@ -673,6 +673,8 @@ MonoBehaviour:
   groundCheck: {fileID: 1499898573}
   groundDistance: 0.2
   jumpCooldown: 1
+  walkSound: {fileID: 8300000, guid: 98e005e2d5100484b88927d0803cb395, type: 3}
+  walkSoundDelay: 0.1
 --- !u!95 &126614397
 Animator:
   serializedVersion: 5

@@ -5,19 +5,23 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     public float moveSpeed = 10.0f;        // Vitesse de déplacement du personnage
-    public float jumpForce = 5.0f;        // Force du saut
-    public Transform cameraTransform;     // Référence à la caméra
-    public LayerMask groundLayer;         // Layer pour détecter le sol
-    public Transform groundCheck;         // Position pour vérifier si le personnage est au sol
-    public float groundDistance = 0.2f;   // Distance pour vérifier si le personnage touche le sol
+    public float jumpForce = 5.0f;         // Force du saut
+    public Transform cameraTransform;      // Référence à la caméra
+    public LayerMask groundLayer;          // Layer pour détecter le sol
+    public Transform groundCheck;          // Position pour vérifier si le personnage est au sol
+    public float groundDistance = 0.2f;    // Distance pour vérifier si le personnage touche le sol
 
-    public float jumpCooldown = 1.0f;     // Temps d'attente entre les sauts (en secondes)
+    public float jumpCooldown = 1.0f;      // Temps d'attente entre les sauts (en secondes)
     private float lastJumpTime = -Mathf.Infinity; // Temps du dernier saut
 
     private Rigidbody rb;
     private bool isGrounded;
-    private Animator animator;            // Référence à l'Animator
-    float animationSpeedFactor = 0.1f; // Ajustez cette valeur en fonction de votre animation
+    private Animator animator;             // Référence à l'Animator
+    float animationSpeedFactor = 0.1f;     // Ajustez cette valeur en fonction de votre animation
+
+    private AudioSource audioSource;       // Référence à l'AudioSource
+    public AudioClip walkSound;            // Le son de marche
+    public float walkSoundDelay = 0.5f;    // Délai entre les sons pour éviter qu'ils ne se superposent trop vite
 
     void Start()
     {
@@ -28,6 +32,13 @@ public class CharacterController : MonoBehaviour
 
         // Récupérer l'Animator attaché au personnage
         animator = GetComponent<Animator>();
+
+        // Ajouter l'AudioSource s'il n'y en a pas déjà
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     void Update()
@@ -46,7 +57,7 @@ public class CharacterController : MonoBehaviour
         Vector3 movementDirection = new Vector3(horizontal, 0, vertical).normalized;
 
         // Calculer la vitesse pour l'Animator
-        float speed = movementDirection.magnitude; 
+        float speed = movementDirection.magnitude;
         animator.SetFloat("Speed", speed * moveSpeed * animationSpeedFactor);
 
         // Si le joueur se déplace, on ajuste la direction
@@ -61,6 +72,20 @@ public class CharacterController : MonoBehaviour
 
             // Déplacer le personnage
             rb.MovePosition(transform.position + moveDir.normalized * moveSpeed * Time.deltaTime);
+
+            // Si le personnage marche, jouer le son de marche
+            if (!audioSource.isPlaying && walkSound != null && isGrounded)
+            {
+                audioSource.PlayOneShot(walkSound); // Joue le son une fois
+            }
+        }
+        else
+        {
+            // Si le personnage ne bouge pas, arrêter le son
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
         }
 
         // Gérer le saut avec un cooldown
@@ -68,6 +93,10 @@ public class CharacterController : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             lastJumpTime = Time.time; // Enregistrer le moment du saut
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
         }
     }
 }
