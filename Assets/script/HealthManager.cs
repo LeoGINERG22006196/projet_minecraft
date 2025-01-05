@@ -25,6 +25,7 @@ public class HealthManager : MonoBehaviour
     private void LoseGame()
     {
         loseUI.SetActive(true); // Affiche la LoseUI
+        Time.timeScale = 0f;
         // Vous pouvez ajouter d'autres actions ici (arrêter le jeu, etc.)
     }
 }

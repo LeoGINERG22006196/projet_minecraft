@@ -23,6 +23,8 @@ public class CharacterController : MonoBehaviour
     public AudioClip walkSound;            // Le son de marche
     public float walkSoundDelay = 0.5f;    // Délai entre les sons pour éviter qu'ils ne se superposent trop vite
 
+    public HealthManager healthManager; // Référence au script HealthManager
+
     void Start()
     {
         // Obtenir le Rigidbody attaché au personnage
@@ -40,17 +42,7 @@ public class CharacterController : MonoBehaviour
             audioSource = gameObject.AddComponent<AudioSource>();
         }
     }
-
-    public HealthManager healthManager; // Référence au script HealthManager
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Bat")) // Assurez-vous que les chauves-souris ont le tag "Bat"
-        {
-            healthManager.TakeDamage(); // Réduit la vie
-        }
-    }
-
+  
     void Update()
     {
         // Vérifier si le personnage est au sol
