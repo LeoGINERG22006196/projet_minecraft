@@ -666,14 +666,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   jumpForce: 5
-  cameraTransform: {fileID: 0}
+  cameraTransform: {fileID: 963194228}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   groundCheck: {fileID: 1499898573}
   groundDistance: 0.2
   jumpCooldown: 1
-  animationSpeedFactor: 0.1
 --- !u!95 &126614397
 Animator:
   serializedVersion: 5
@@ -687,7 +686,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 080cbdfd5b62ddf479ef8e82c8d0c254, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -8552,6 +8551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 180248660}
+  successUI: {fileID: 1401054256}
 --- !u!4 &1674483496
 Transform:
   m_ObjectHideFlags: 0
