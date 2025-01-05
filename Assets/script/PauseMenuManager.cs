@@ -3,13 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuManager : MonoBehaviour
 {
-    public GameObject pauseMenuUI; 
+    public GameObject pauseMenuUI; // Le menu de pause
+    public GameObject successUI;   // Le menu de succès
     private bool isPaused = false;
 
     void Update()
     {
-        
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // Vérifie si le menu de succès n'est pas actif avant de permettre l'ouverture/fermeture du menu de pause
+        if (!successUI.activeSelf && Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
                 ResumeGame();
@@ -20,27 +21,27 @@ public class PauseMenuManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        pauseMenuUI.SetActive(false); 
-        Time.timeScale = 1f;         
+        pauseMenuUI.SetActive(false);  // Désactive le menu de pause
+        Time.timeScale = 1f;           // Reprend le temps
         isPaused = false;
     }
 
     public void PauseGame()
     {
-        pauseMenuUI.SetActive(true); 
-        Time.timeScale = 0f;         
+        pauseMenuUI.SetActive(true);   // Active le menu de pause
+        Time.timeScale = 0f;           // Met en pause le temps
         isPaused = true;
     }
 
     public void LoadMainMenu()
     {
-        Time.timeScale = 1f; 
-        SceneManager.LoadScene("MainMenu"); 
+        Time.timeScale = 1f;           // Reprend le temps
+        SceneManager.LoadScene("MainMenu"); // Charge la scène du menu principal
     }
 
     public void QuitGame()
     {
         Debug.Log("Quit Game");
-        Application.Quit(); 
+        Application.Quit();  // Quitte l'application
     }
 }

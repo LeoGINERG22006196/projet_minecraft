@@ -17,6 +17,7 @@ public class CharacterController : MonoBehaviour
     private Rigidbody rb;
     private bool isGrounded;
     private Animator animator;            // Référence à l'Animator
+    float animationSpeedFactor = 0.1f; // Ajustez cette valeur en fonction de votre animation
 
     void Start()
     {
@@ -45,8 +46,8 @@ public class CharacterController : MonoBehaviour
         Vector3 movementDirection = new Vector3(horizontal, 0, vertical).normalized;
 
         // Calculer la vitesse pour l'Animator
-        float speed = movementDirection.magnitude;
-        animator.SetFloat("Speed", speed * moveSpeed); // Envoie la vitesse à l'Animator
+        float speed = movementDirection.magnitude; 
+        animator.SetFloat("Speed", speed * moveSpeed * animationSpeedFactor);
 
         // Si le joueur se déplace, on ajuste la direction
         if (speed >= 0.1f)

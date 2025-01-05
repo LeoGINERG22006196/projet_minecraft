@@ -666,13 +666,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   jumpForce: 5
-  cameraTransform: {fileID: 963194228}
+  cameraTransform: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   groundCheck: {fileID: 1499898573}
   groundDistance: 0.2
   jumpCooldown: 1
+  animationSpeedFactor: 0.1
 --- !u!95 &126614397
 Animator:
   serializedVersion: 5
@@ -5722,6 +5723,8 @@ MonoBehaviour:
   distance: 5
   height: 2
   cameraSpeed: 2
+  verticalClampMin: -30
+  verticalClampMax: 60
 --- !u!1001 &1019942978
 PrefabInstance:
   m_ObjectHideFlags: 0
